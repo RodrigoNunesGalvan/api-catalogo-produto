@@ -19,6 +19,7 @@ public class ProdutoMapper {
     }
 
     public Produto inputDtoToModel(ProdutoInputDto request) {
+
         return mapper.map(request, Produto.class);
     }
 }

@@ -36,17 +36,20 @@ public class ProdutoService {
         return mapper.modelToOutputDto(savedModel);
     }
 
+    @Transactional
     public Page<ProdutoOutputDto> findAll(ProdutoFilter filter, Pageable pageable){
         Page<Produto> page =  repository.find(pageable, filter);
         return page.map(produto -> mapper.modelToOutputDto(produto));
     }
 
+    @Transactional
     public Page<ProdutoOutputDto> findAllSpec(ProdutoSpecification spec, Pageable pageable){
         Page<Produto> page =  repository.findAll(spec, pageable);
         return page.map(produto -> mapper.modelToOutputDto(produto));
     }
 
 
+    @Transactional
     public ProdutoOutputDto findById(Long id){
         Produto model = repository.findById(id).orElseThrow(() -> new  EntidadeNaoEncontradaException("O Produto de ID: "+id+" Não foi encontrado"){});
         return mapper.modelToOutputDto(model);
@@ -65,6 +68,7 @@ public class ProdutoService {
         repository.deleteById(id);
     }
 
+    @Transactional
     public Page<ProdutoOutputDto> findAllV2(ProdutoFilter filter, Pageable pageable){
         Page<Produto> page = repository.findAll(hasId(filter.getId()).and(hasName(filter.getName())), pageable);
         return page.map(produto -> mapper.modelToOutputDto(produto));

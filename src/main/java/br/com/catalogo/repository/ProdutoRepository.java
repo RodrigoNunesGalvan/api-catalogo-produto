@@ -11,7 +11,5 @@ import java.util.Optional;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long>, ProdutoFilterRepository, JpaSpecificationExecutor<Produto> {
 
-    Produto findByPrice(BigDecimal price);
-    Optional<Produto> findById(Long id);
 }
 

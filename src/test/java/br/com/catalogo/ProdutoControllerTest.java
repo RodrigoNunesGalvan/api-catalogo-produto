@@ -1,19 +1,22 @@
-package br.com.catalogo;
+//package br.com.catalogo;
 //
 //import static org.assertj.core.api.Assertions.assertThat;
-//import java.math.BigDecimal;
+//
 //import java.util.Optional;
-//import br.com.catalogo.model.Produto;
-//import br.com.catalogo.repository.ProdutoRepository;
-//import br.com.catalogo.service.ProdutoService;
-//import org.junit.Before;
+//
+//import br.com.catalogo.exception.EntidadeNaoEncontradaException;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
-//import org.mockito.MockitoAnnotations;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 //import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.test.context.junit4.SpringRunner;
+//import java.math.BigDecimal;
+//import br.com.catalogo.model.Produto;
+//import br.com.catalogo.repository.ProdutoRepository;
+//import br.com.catalogo.service.ProdutoService;
+//import org.junit.Before;
+//import org.mockito.MockitoAnnotations;
 //import org.springframework.test.web.servlet.MockMvc;
 //
 //@RunWith(SpringRunner.class)
@@ -32,8 +35,7 @@ package br.com.catalogo;
 //
 //    @Before
 //    public void init() {
-//        MockitoAnnotations.openMocks(this);
-//    }
+//        MockitoAnnotations.initMocks(this);}
 //
 //    @Test
 //    public void deveraSalvarProdutoComSucesso() throws Exception {
@@ -41,7 +43,7 @@ package br.com.catalogo;
 //                .id(1L)
 //                .name("Celular Sansung S20")
 //                .description("Celular de última geração com 2 anos de garantia")
-//                .price(BigDecimal.valueOf(3999))
+//                .price(BigDecimal.ZERO)
 //                .build();
 //
 //        Produto newProduto = ProdutoRepository.save(produto);
@@ -51,10 +53,13 @@ package br.com.catalogo;
 //
 //    @Test
 //    public void deveraAtualizarProdutoComSucesso() throws Exception {
-//        Produto produto = ProdutoRepository.findById(1L).get();
-//        produto.setName("Celular Sansung S21");
+//        Produto produto = ProdutoRepository.findById(10L)
+//                .orElseThrow(() -> new EntidadeNaoEncontradaException("produto não encontrado") {
+//                    private static final long serialVersionUID = 7154716946021059116L;
+//        });
+//        produto.setName("Celular Sansung");
 //        ProdutoRepository.save(produto);
-//        produto = ProdutoRepository.findById(1L).get();
+//        produto = ProdutoRepository.findById(10L).get();
 //
 //        assertThat(produto.getName()).isEqualTo("Celular Sansung S21");
 //
@@ -85,4 +90,4 @@ package br.com.catalogo;
 //    }
 //
 //}
-
+//

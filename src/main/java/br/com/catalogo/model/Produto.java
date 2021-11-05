@@ -8,16 +8,15 @@ import javax.persistence.*;
 
 
 @Data
-@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "PRODUCT")
 public class Produto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name")
@@ -28,5 +27,6 @@ public class Produto {
 
     @Column(name = "price")
     private BigDecimal price;
+
 }
 
